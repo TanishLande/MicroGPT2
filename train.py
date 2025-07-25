@@ -153,8 +153,8 @@ class Transformer(nn.Module):
         config_args['vocab_size'] = 50257 # always 50257 for GPT model checkpoints
         config_args['block_size'] = 1024 # always 1024 for GPT model checkpoints
         # create a from-scratch initialized minGPT model
-        config = GPT2config(**config_args)
-        model = GPT(config)
+        config = Modelconfig(**config_args)
+        model = Transformer(config)
         sd = model.state_dict()
         sd_keys = sd.keys()
         sd_keys = [k for k in sd_keys if not k.endswith('.attn.bias')] # discard this mask / buffer, not a param
